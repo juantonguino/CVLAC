@@ -1,14 +1,87 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./../TemplateClient.xhtml">
 
             <ui:define name="content">
-                content
+                <h:form>
+                <h3>Ponencias</h3>
+                <h:dataTable value="#{ponenciaBean.ponencias}" var="objeto" class="table table-bordered">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Identificador" />
+                        </f:facet>
+                        <h:outputLabel value="#{objeto.id}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Nombre" />
+                        </f:facet>
+                        <h:outputLabel value="#{objeto.nombre}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Año" />
+                        </f:facet>
+                        <h:outputLabel value="#{objeto.anio}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Evento" />
+                        </f:facet>
+                        <h:outputLabel value="#{objeto.eventoId.lugar}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Trabajo Investigacion" />
+                        </f:facet>
+                        <h:outputLabel value="#{objeto.trabajoInvestigacionId.titulo}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Opciones" />
+                        </f:facet>
+                        <p:commandButton value="Modificar" class="btn btn-warning"/>
+                        <p:commandButton value="Elimnar" class="btn btn-danger"/>
+                    </h:column>
+                </h:dataTable>
+                
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                
+                <p:commandButton value="Agregar" type="button" class="btn btn-success" onclick="PF('agregar').show();" />
+                <p:dialog header="Agregar" widgetVar="agregar" width="500" modal="true" resizable="false">
+                    <p:panelGrid columns="3">
+                        <p:outputLabel value="Nombre:" for="nombre"/>
+                        <p:inputText id="nombre" label="nombre" required="true" value="#{ponenciaBean.ponenciaAgregar.nombre}"/>
+                        <p:message for="nombre"/>
+                        
+                        <p:outputLabel value="Año:" for="anio"/>
+                        <p:calendar id="anio" label="anio" required="true" value="#{ponenciaBean.ponenciaAgregar.anio}" showOn="button" />
+                        <p:message for="anio"/>
+                        
+                        <p:outputLabel value="Evento:" for="evento"/>
+                        <p:selectOneMenu value="#{ponenciaBean.ponenciaAgregar.eventoId}" id="evento">
+                            <f:selectItems value="#{ponenciaBean.eventos}" var="evento" itemValue="#{evento}" itemLabel="#{evento.lugar}"/>
+                        </p:selectOneMenu>
+                        <p:message for="evento"/>
+                        
+                        <p:outputLabel value="Trabajo Investivacion:" for="trabajoinvestigacion"/>
+                        <p:selectOneMenu value="#{ponenciaBean.ponenciaAgregar.trabajoInvestigacionId}" id="trabajoinvestigacion">
+                            <f:selectItems value="#{ponenciaBean.trabajos}" var="trabajo" itemValue="#{trabajo}" itemLabel="#{trabajo.titulo}"/>
+                        </p:selectOneMenu>
+                        <p:message for="trabajoinvestigacion"/>
+                    </p:panelGrid>
+                    <p:commandButton value="Agregar" actionListener="#{ponenciaBean.agregarPonencia()}"/>
+                    <p:commandButton value="Cancelar" onclick="PF('agregar').hide();"/>
+                </p:dialog>
+                </h:form>
             </ui:define>
 
         </ui:composition>
