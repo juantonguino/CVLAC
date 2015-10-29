@@ -11,6 +11,7 @@ import com.entities.InvestigadorTrabajoInvestigacion;
 import com.entities.TrabajoInvestigacion;
 import com.utils.JPAUtil;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -43,10 +44,10 @@ public class TrabajoInvestigacionBean {
     public TrabajoInvestigacionBean() {
         controlador= new InvestigadorTrabajoInvestigacionJpaController(JPAUtil.getEntityManagerFactory());
         controladorTrabajoInvestigacion= new TrabajoInvestigacionJpaController(JPAUtil.getEntityManagerFactory());
-        trabajoModificar= new TrabajoInvestigacion();
-        trabajoAgregar= new TrabajoInvestigacion();
+        trabajoModificar= new TrabajoInvestigacion(0, "", new Date(), new Date());
+        trabajoAgregar= new TrabajoInvestigacion(0, "", new Date(), new Date());
         trabajos= new ArrayList<>();
-        String temp = ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getParameter("placa");
+        String temp = ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getParameter("identificacion");
         identificacionInvestigador=Integer.parseInt(temp);
         
         List<InvestigadorTrabajoInvestigacion> listaTrabajosInvestigador = controlador.findInvestigadorTrabajoInvestigacionEntities();
