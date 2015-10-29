@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CVLAC</title>
+        <h:outputStylesheet name="./css/bootstrap-theme.css"/>
+        <h:outputStylesheet name="./css/bootstrap.css"/>
+        <h:outputScript name="./js/bootstrap.js"/>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">CVLAC</a>
+                </div>
+            </div>
+        </nav>
+  
+        <div class="container">
+            <h:form>
+                <div class="form-group">
+                    <label for="email">Usuario:</label>
+                    <p:inputText class="form-control" id="email" placeholder="Ingrese Usuario" required="true" value="#{usuarioBean.usuarioIngreso.nombre}"/>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Contraseña:</label>
+                    <p:password class="form-control" id="pwd" placeholder="Ingrese Controseña" required="true" value="#{usuarioBean.usuarioIngreso.contrasenia}"/>
+                </div>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                <p:commandButton value="Iniciar" class="btn btn-default" actionListener="#{usuarioBean.verificarIngreso()}"/>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
