@@ -56,5 +56,30 @@ public class TrabajoInvestigacionBean {
             }
         }
     }
+
+    public TrabajoInvestigacion getTrabajoModificar() {
+        return trabajoModificar;
+    }
+
+    public void setTrabajoModificar(TrabajoInvestigacion trabajoModificar) {
+        this.trabajoModificar = trabajoModificar;
+    }
+
+    public TrabajoInvestigacion getTrabajoAgregar() {
+        return trabajoAgregar;
+    }
+
+    public void setTrabajoAgregar(TrabajoInvestigacion trabajoAgregar) {
+        this.trabajoAgregar = trabajoAgregar;
+    }
+
+    public List<TrabajoInvestigacion> getTrabajos() {
+        return trabajos;
+    }
+
+    public void setTrabajos(List<TrabajoInvestigacion> trabajos) {
+        TrabajoInvestigacionBean.trabajos = trabajos;
+    }
+    
     
 }
