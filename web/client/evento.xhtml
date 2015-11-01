@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../TemplateClient.xhtml">
+
+            <ui:define name="content">
+                <h3>Eventos</h3>
+                <h:form>
+                <h:dataTable value="#{eventoBean.eventos}" var="objeto" class="table table-bordered">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Identificador" />
+                        </f:facet>
+                        <h:outputLabel value="#{objeto.id}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Lugar" />
+                        </f:facet>
+                        <h:outputLabel value="#{objeto.lugar}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Fecha Inicio" />
+                        </f:facet>
+                        <h:outputLabel value="#{objeto.fechaInicio}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Fecha Fin" />
+                        </f:facet>
+                        <h:outputLabel value="#{objeto.fechaFin}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Tipo" />
+                        </f:facet>
+                        <h:outputLabel value="#{objeto.tipo}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Caracter" />
+                        </f:facet>
+                        <h:outputLabel value="#{objeto.caracter}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Opciones" />
+                        </f:facet>
+                        <p:commandButton value="Modificar" class="btn btn-warning"/>
+                        <p:commandButton value="Elimnar" class="btn btn-danger"/>
+                    </h:column>
+                </h:dataTable>
+                <br/>
+                <p:commandButton value="Agregar" type="button" class="btn btn-success" onclick="PF('agregar').show();" />
+                <p:dialog header="Agregar" widgetVar="agregar" width="500" modal="true" resizable="false" >
+                    <p:panelGrid columns="2">
+                        
+                        <p:outputLabel value="Lugar:" for="lugar"/>
+                        <p:inputText id="lugar" label="lugar" required="true" value="#{eventoBean.eventoAgregar.lugar}"/>
+                        
+                        <p:outputLabel value="Fecha Inicio:" for="fechainicio"/>
+                        <p:calendar id="fechainicio" label="fechainicio" required="true" value="#{eventoBean.eventoAgregar.fechaInicio}"/>
+                        
+                        <p:outputLabel value="Fecha Fin:" for="fechafin"/>
+                        <p:calendar id="fechafin" label="fechafin" required="true" value="#{eventoBean.eventoAgregar.fechaFin}"/>
+                        
+                        <p:outputLabel value="Tipo:"/>
+                        <p:inputText label="tipo" required="true"/>
+                        
+                        <p:outputLabel value="Caracter:" for="caracter"/>
+                        <p:inputText id="caracter" label="caracter" required="true" value="#{eventoBean.eventoAgregar.caracter}"/>
+                        
+                    </p:panelGrid>
+                        <br/>
+                        <p:commandButton value="Agregar" actionListener="#{eventoBean.agregarEvento()}" oncomplete="handleSubmit(args,'PF('agregar')');"/>
+                        <p:commandButton value="Cancelar" onclick="PF('agregar').hide();"/>
+                    
+                </p:dialog>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

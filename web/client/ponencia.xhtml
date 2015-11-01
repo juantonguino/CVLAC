@@ -56,7 +56,10 @@
                 <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                 
                 <p:commandButton value="Agregar" type="button" class="btn btn-success" onclick="PF('agregar').show();" />
-                <p:dialog header="Agregar" widgetVar="agregar" width="500" modal="true" resizable="false">
+                </h:form>
+                
+                <p:dialog header="Agregar" widgetVar="agregar" width="500" modal="true" resizable="false" >
+                    <h:form>
                     <p:panelGrid columns="3">
                         <p:outputLabel value="Nombre:" for="nombre"/>
                         <p:inputText id="nombre" label="nombre" required="true" value="#{ponenciaBean.ponenciaAgregar.nombre}"/>
@@ -78,10 +81,11 @@
                         </p:selectOneMenu>
                         <p:message for="trabajoinvestigacion"/>
                     </p:panelGrid>
-                    <p:commandButton value="Agregar" actionListener="#{ponenciaBean.agregarPonencia()}"/>
+                        <br/>
+                    <p:commandButton value="Agregar" actionListener="#{ponenciaBean.agregarPonencia()}" oncomplete="handleSubmit(args,'PF('agregar')');"/>
                     <p:commandButton value="Cancelar" onclick="PF('agregar').hide();"/>
+                    </h:form>
                 </p:dialog>
-                </h:form>
             </ui:define>
 
         </ui:composition>
