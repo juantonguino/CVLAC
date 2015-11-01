@@ -67,10 +67,10 @@
                         <p:inputText id="lugar" label="lugar" required="true" value="#{eventoBean.eventoAgregar.lugar}"/>
                         
                         <p:outputLabel value="Fecha Inicio:" for="fechainicio"/>
-                        <p:calendar id="fechainicio" label="fechainicio" required="true" value="#{eventoBean.eventoAgregar.fechaInicio}"/>
+                        <p:calendar id="fechainicio" label="fechainicio" required="true" value="#{eventoBean.eventoAgregar.fechaInicio}" showOn="button"/>
                         
                         <p:outputLabel value="Fecha Fin:" for="fechafin"/>
-                        <p:calendar id="fechafin" label="fechafin" required="true" value="#{eventoBean.eventoAgregar.fechaFin}"/>
+                        <p:calendar id="fechafin" label="fechafin" required="true" value="#{eventoBean.eventoAgregar.fechaFin}" showOn="button"/>
                         
                         <p:outputLabel value="Tipo:"/>
                         <p:inputText label="tipo" required="true"/>
@@ -81,7 +81,7 @@
                     </p:panelGrid>
                         <br/>
                         <p:commandButton value="Agregar" actionListener="#{eventoBean.agregarEvento()}" oncomplete="handleSubmit(args,'PF('agregar')');"/>
-                        <p:commandButton value="Cancelar" onclick="PF('agregar').hide();"/>
+                        <p:commandButton value="Cancelar" onclick="#{eventoBean.activarDialogoAgregar()}"/>
                     
                 </p:dialog>
                 </h:form>

@@ -94,4 +94,11 @@ public class EventoBean {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede eliminar Vehiculo"));
         }
     }
+    
+    public String activarDialogoAgregar(){
+        FacesContext context= FacesContext.getCurrentInstance();
+        EventoBean eventoBean= context.getApplication().evaluateExpressionGet(context, "#{eventoBean}", EventoBean.class);
+        eventoBean.setIdentificacion(this.identificacion);
+        return "PF('agregar').hide();";
+    }
 }
