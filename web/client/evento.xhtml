@@ -59,7 +59,7 @@
                     </h:column>
                 </h:dataTable>
                 <br/>
-                <p:commandButton value="Agregar" type="button" class="btn btn-success" onclick="PF('agregar').show();" />
+                <p:commandButton value="Agregar" type="button" class="btn btn-success" onclick="#{eventoBean.activarDialogoAgregar()}" />
                 <p:dialog header="Agregar" widgetVar="agregar" width="500" modal="true" resizable="false" >
                     <p:panelGrid columns="2">
                         
@@ -73,7 +73,7 @@
                         <p:calendar id="fechafin" label="fechafin" required="true" value="#{eventoBean.eventoAgregar.fechaFin}" showOn="button"/>
                         
                         <p:outputLabel value="Tipo:"/>
-                        <p:inputText label="tipo" required="true"/>
+                        <p:inputText label="tipo" required="true" value="#{eventoBean.eventoAgregar.tipo}"/>
                         
                         <p:outputLabel value="Caracter:" for="caracter"/>
                         <p:inputText id="caracter" label="caracter" required="true" value="#{eventoBean.eventoAgregar.caracter}"/>
@@ -81,7 +81,7 @@
                     </p:panelGrid>
                         <br/>
                         <p:commandButton value="Agregar" actionListener="#{eventoBean.agregarEvento()}" oncomplete="handleSubmit(args,'PF('agregar')');"/>
-                        <p:commandButton value="Cancelar" onclick="#{eventoBean.activarDialogoAgregar()}"/>
+                        <p:commandButton value="Cancelar" onclick="PF('agregar').hide();"/>
                     
                 </p:dialog>
                 </h:form>

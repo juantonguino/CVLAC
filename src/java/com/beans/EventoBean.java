@@ -35,7 +35,7 @@ public class EventoBean {
     
     private EventoJpaController controlador;
     
-    private int identificacion;
+    private static int identificacion;
     
     /**
      * Creates a new instance of EventoBean
@@ -99,6 +99,6 @@ public class EventoBean {
         FacesContext context= FacesContext.getCurrentInstance();
         EventoBean eventoBean= context.getApplication().evaluateExpressionGet(context, "#{eventoBean}", EventoBean.class);
         eventoBean.setIdentificacion(this.identificacion);
-        return "PF('agregar').hide();";
+        return "PF('agregar').show();";
     }
 }
