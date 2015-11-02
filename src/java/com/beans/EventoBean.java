@@ -6,8 +6,11 @@
 package com.beans;
 
 import com.controllers.EventoJpaController;
+import com.controllers.exceptions.IllegalOrphanException;
+import com.controllers.exceptions.NonexistentEntityException;
 import com.entities.Evento;
 import com.utils.JPAUtil;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,7 +51,8 @@ public class EventoBean {
         eventos=controlador.findEventoEntities();
         
         String temp = ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getParameter("identificacion");
-        identificacion=Integer.parseInt(temp);
+        if(temp!=null)
+            identificacion=Integer.parseInt(temp);
     }
 
     public Evento getEventoAgregar() {
@@ -87,7 +91,7 @@ public class EventoBean {
         try{
             controlador.create(eventoAgregar);
             FacesContext contex= FacesContext.getCurrentInstance();
-            contex.getExternalContext().redirect("evento.xhtml??identificacion="+identificacion);
+            contex.getExternalContext().redirect("evento.xhtml?identificacion="+identificacion);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "EXELENTE!", "Se ha agregado una ponencia"));
         }
         catch(Exception e){
@@ -100,5 +104,17 @@ public class EventoBean {
         EventoBean eventoBean= context.getApplication().evaluateExpressionGet(context, "#{eventoBean}", EventoBean.class);
         eventoBean.setIdentificacion(this.identificacion);
         return "PF('agregar').show();";
+    }
+    
+    public void eliminarEvento(Evento evento){
+        try{
+            controlador.destroy(evento.getId());
+            FacesContext contex= FacesContext.getCurrentInstance();
+            contex.getExternalContext().redirect("evento.xhtml?identificacion="+identificacion);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "EXELENTE!", "Se ha agregado una ponencia"));
+        }
+        catch(Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede eliminar Vehiculo"));
+        }
     }
 }

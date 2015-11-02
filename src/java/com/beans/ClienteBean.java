@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestScoped
 public class ClienteBean {
 
-    private String identificacion;
+    public static String identificacion="";
     
     /**
      * Creates a new instance of ClienteBean
