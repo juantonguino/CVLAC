@@ -117,4 +117,22 @@ public class EventoBean {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede eliminar Vehiculo"));
         }
     }
+    
+    public String modificarEvento(Evento evento){
+        this.eventoModificar=null;
+        this.eventoModificar=evento;
+        return "PF('modificar').show();";
+    }
+    
+    public void modificarEventoDialogo(){
+        try{
+            controlador.edit(eventoModificar);
+            FacesContext contex= FacesContext.getCurrentInstance();
+            contex.getExternalContext().redirect("evento.xhtml?identificacion="+identificacion);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "EXELENTE!", "Se ha agregado una ponencia"));
+        }
+        catch(Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede eliminar Vehiculo"));
+        }
+    }
 }
