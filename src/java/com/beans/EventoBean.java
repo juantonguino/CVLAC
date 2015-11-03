@@ -51,8 +51,9 @@ public class EventoBean {
         eventos=controlador.findEventoEntities();
         
         String temp = ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getParameter("identificacion");
-        if(temp!=null)
+        if(temp!=null){
             identificacion=Integer.parseInt(temp);
+        }
     }
 
     public Evento getEventoAgregar() {
