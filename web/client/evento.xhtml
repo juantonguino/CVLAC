@@ -13,101 +13,107 @@
             <ui:define name="content">
                 <h3>Eventos</h3>
                 <h:form>
-                <h:dataTable value="#{eventoBean.eventos}" var="objeto" class="table table-bordered">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel value="Identificador" />
-                        </f:facet>
-                        <h:outputLabel value="#{objeto.id}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel value="Lugar" />
-                        </f:facet>
-                        <h:outputLabel value="#{objeto.lugar}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel value="Fecha Inicio" />
-                        </f:facet>
-                        <h:outputLabel value="#{objeto.fechaInicio}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel value="Fecha Fin" />
-                        </f:facet>
-                        <h:outputLabel value="#{objeto.fechaFin}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel value="Tipo" />
-                        </f:facet>
-                        <h:outputLabel value="#{objeto.tipo}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel value="Caracter" />
-                        </f:facet>
-                        <h:outputLabel value="#{objeto.caracter}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel value="Opciones" />
-                        </f:facet>
-                        <p:commandButton value="Modificar" class="btn btn-warning" onclick="#{eventoBean.modificarEvento(objeto)}"/>
-                        <p:commandButton value="Elimnar" class="btn btn-danger" actionListener="#{eventoBean.eliminarEvento(objeto)}"/>
-                    </h:column>
-                </h:dataTable>
-                <br/>
-                <p:commandButton value="Agregar" type="button" class="btn btn-success" onclick="#{eventoBean.activarDialogoAgregar()}" />
+                    <h:dataTable value="#{eventoBean.eventos}" var="objeto" class="table table-bordered">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Identificador" />
+                            </f:facet>
+                            <h:outputLabel value="#{objeto.id}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Lugar" />
+                            </f:facet>
+                            <h:outputLabel value="#{objeto.lugar}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Fecha Inicio" />
+                            </f:facet>
+                            <h:outputLabel value="#{objeto.fechaInicio}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Fecha Fin" />
+                            </f:facet>
+                            <h:outputLabel value="#{objeto.fechaFin}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Tipo" />
+                            </f:facet>
+                            <h:outputLabel value="#{objeto.tipo}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Caracter" />
+                            </f:facet>
+                            <h:outputLabel value="#{objeto.caracter}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel value="Opciones" />
+                            </f:facet>
+                            <p:commandButton value="Modificar" class="btn btn-warning" onclick="#{eventoBean.modificarEvento(objeto)}"/>
+                            <p:commandButton value="Elimnar" class="btn btn-danger" actionListener="#{eventoBean.eliminarEvento(objeto)}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <br/>
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <br/>
+                    <p:commandButton value="Agregar" type="button" class="btn btn-success" onclick="#{eventoBean.activarDialogoAgregar()}" />
+                </h:form>
+
                 <p:dialog header="Agregar" widgetVar="agregar" width="430" modal="true" resizable="false" >
-                    <p:panelGrid columns="2">
-                        
-                        <p:outputLabel value="Lugar:" for="lugar"/>
-                        <p:inputText id="lugar" label="lugar" required="true" value="#{eventoBean.eventoAgregar.lugar}"/>
-                        
-                        <p:outputLabel value="Fecha Inicio:" for="fechainicio"/>
-                        <p:calendar id="fechainicio" label="fechainicio" required="true" value="#{eventoBean.eventoAgregar.fechaInicio}" showOn="button"/>
-                        
-                        <p:outputLabel value="Fecha Fin:" for="fechafin"/>
-                        <p:calendar id="fechafin" label="fechafin" required="true" value="#{eventoBean.eventoAgregar.fechaFin}" showOn="button"/>
-                        
-                        <p:outputLabel value="Tipo:"/>
-                        <p:inputText label="tipo" required="true" value="#{eventoBean.eventoAgregar.tipo}"/>
-                        
-                        <p:outputLabel value="Caracter:" for="caracter"/>
-                        <p:inputText id="caracter" label="caracter" required="true" value="#{eventoBean.eventoAgregar.caracter}"/>
-                        
-                    </p:panelGrid>
+                    <h:form>
+                        <p:panelGrid columns="2">
+
+                            <p:outputLabel value="Lugar:" for="lugar"/>
+                            <p:inputText id="lugar" label="lugar" required="true" value="#{eventoBean.eventoAgregar.lugar}"/>
+
+                            <p:outputLabel value="Fecha Inicio:" for="fechainicio"/>
+                            <p:calendar id="fechainicio" label="fechainicio" required="true" value="#{eventoBean.eventoAgregar.fechaInicio}" showOn="button"/>
+
+                            <p:outputLabel value="Fecha Fin:" for="fechafin"/>
+                            <p:calendar id="fechafin" label="fechafin" required="true" value="#{eventoBean.eventoAgregar.fechaFin}" showOn="button"/>
+
+                            <p:outputLabel value="Tipo:"/>
+                            <p:inputText label="tipo" required="true" value="#{eventoBean.eventoAgregar.tipo}"/>
+
+                            <p:outputLabel value="Caracter:" for="caracter"/>
+                            <p:inputText id="caracter" label="caracter" required="true" value="#{eventoBean.eventoAgregar.caracter}"/>
+
+                        </p:panelGrid>
                         <br/>
                         <p:commandButton value="Agregar" actionListener="#{eventoBean.agregarEvento()}" oncomplete="handleSubmit(args,'PF('agregar')');"/>
                         <p:commandButton value="Cancelar" onclick="PF('agregar').hide();"/>
-                    
+                    </h:form>
                 </p:dialog>
+                
                 <p:dialog header="Modificar" widgetVar="modificar" width="500" modal="true" resizable="false" >
-                    <p:panelGrid columns="2">
-                        
-                        <p:outputLabel value="Lugar:" for="lugar"/>
-                        <p:inputText id="lugar" label="lugar" required="true" value="#{eventoBean.eventoModificar.lugar}"/>
-                        
-                        <p:outputLabel value="Fecha Inicio:" for="fechainicio"/>
-                        <p:calendar id="fechainicio" label="fechainicio" required="true" value="#{eventoBean.eventoModificar.fechaInicio}" showOn="button"/>
-                        
-                        <p:outputLabel value="Fecha Fin:" for="fechafin"/>
-                        <p:calendar id="fechafin" label="fechafin" required="true" value="#{eventoBean.eventoModificar.fechaFin}" showOn="button"/>
-                        
-                        <p:outputLabel value="Tipo:"/>
-                        <p:inputText label="tipo" required="true" value="#{eventoBean.eventoModificar.tipo}"/>
-                        
-                        <p:outputLabel value="Caracter:" for="caracter"/>
-                        <p:inputText id="caracter" label="caracter" required="true" value="#{eventoBean.eventoModificar.caracter}"/>
-                        
-                    </p:panelGrid>
+                    <h:form>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Lugar:" for="lugarm"/>
+                            <p:inputText id="lugarm" label="lugarm" required="true" value="#{eventoBean.eventoModificar.lugar}"/>
+
+                            <p:outputLabel value="Fecha Inicio:" for="fechainiciom"/>
+                            <p:calendar id="fechainiciom" label="fechainiciom" required="true" value="#{eventoBean.eventoModificar.fechaInicio}" showOn="button"/>
+
+                            <p:outputLabel value="Fecha Fin:" for="fechafinm"/>
+                            <p:calendar id="fechafinm" label="fechafinm" required="true" value="#{eventoBean.eventoModificar.fechaFin}" showOn="button"/>
+
+                            <p:outputLabel value="Tipo:"/>
+                            <p:inputText label="tipom" required="true" value="#{eventoBean.eventoModificar.tipo}"/>
+
+                            <p:outputLabel value="Caracter:" for="caracterm"/>
+                            <p:inputText id="caracterm" label="caracterm" required="true" value="#{eventoBean.eventoModificar.caracter}"/>
+
+                        </p:panelGrid>
                         <br/>
                         <p:commandButton value="Modificar" actionListener="#{eventoBean.modificarEventoDialogo()}" oncomplete="handleSubmit(args,'PF('modificar')');"/>
-                        <p:commandButton value="Cancelar" onclick="PF('agregar').hide();"/>
+                        <p:commandButton value="Cancelar" onclick="PF('modificar').hide();"/>
+                    </h:form>
                 </p:dialog>
-                </h:form>
             </ui:define>
 
         </ui:composition>

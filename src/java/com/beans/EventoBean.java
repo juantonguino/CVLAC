@@ -112,10 +112,10 @@ public class EventoBean {
             controlador.destroy(evento.getId());
             FacesContext contex= FacesContext.getCurrentInstance();
             contex.getExternalContext().redirect("evento.xhtml?identificacion="+identificacion);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "EXELENTE!", "Se ha agregado una ponencia"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "EXELENTE!", "Se ha eliminado un evento"));
         }
         catch(Exception e){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede eliminar Vehiculo"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede eliminar Evento"));
         }
     }
     
