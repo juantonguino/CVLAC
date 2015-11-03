@@ -54,6 +54,7 @@
                             <f:facet name="header">
                                 <h:outputLabel value="Opciones" />
                             </f:facet>
+                            <p:commandButton id="editButton" value="modificar" update=":eventomid" oncomplete="#{eventoBean.modificarEvento(objeto)}"/>
                             <p:commandButton value="Modificar" class="btn btn-warning" onclick="#{eventoBean.modificarEvento(objeto)}"/>
                             <p:commandButton value="Elimnar" class="btn btn-danger" actionListener="#{eventoBean.eliminarEvento(objeto)}"/>
                         </h:column>
@@ -91,7 +92,7 @@
                 </p:dialog>
                 
                 <p:dialog header="Modificar" widgetVar="modificar" width="500" modal="true" resizable="false" >
-                    <h:form>
+                    <h:form id="eventomid">
                         <p:panelGrid columns="2">
                             <p:outputLabel value="Lugar:" for="lugarm"/>
                             <p:inputText id="lugarm" label="lugarm" required="true" value="#{eventoBean.eventoModificar.lugar}"/>
