@@ -54,8 +54,9 @@
                             <f:facet name="header">
                                 <h:outputLabel value="Opciones" />
                             </f:facet>
-                            <p:commandButton value="modificar" actionListener="#{eventoBean.inicializarDialogoModificar()}"/>
-                            <p:commandButton value="Modificar" class="btn btn-warning" onclick="#{eventoBean.modificarEvento(objeto)}"/>
+                            <p:commandButton value="Modificar" class="btn btn-warning" update=":eventomid" oncomplete="PF('modificar').show()" title="View">
+                                <f:setPropertyActionListener value="#{objeto}" target="#{eventoBean.eventoModificar}" />
+                            </p:commandButton>
                             <p:commandButton value="Elimnar" class="btn btn-danger" actionListener="#{eventoBean.eliminarEvento(objeto)}"/>
                         </h:column>
                     </h:dataTable>
