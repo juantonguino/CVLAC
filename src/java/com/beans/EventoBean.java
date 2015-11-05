@@ -100,13 +100,6 @@ public class EventoBean {
         }
     }
     
-    public String activarDialogoAgregar(){
-        FacesContext context= FacesContext.getCurrentInstance();
-        EventoBean eventoBean= context.getApplication().evaluateExpressionGet(context, "#{eventoBean}", EventoBean.class);
-        eventoBean.setIdentificacion(this.identificacion);
-        return "PF('agregar').show();";
-    }
-    
     public void eliminarEvento(Evento evento){
         try{
             controlador.destroy(evento.getId());
@@ -119,14 +112,11 @@ public class EventoBean {
         }
     }
     
-    public String modificarEvento(Evento evento){
-        this.eventoModificar=null;
-        this.eventoModificar=evento;
-        return "PF('modificar').show();";
-    }
-    
-    public void modificarEventoDialogo(){
+    public void modificarEvento(){
         try{
+            if(eventoModificar.getPonenciaList()==null){
+                eventoModificar.setPonenciaList(new ArrayList<>());
+            }
             controlador.edit(eventoModificar);
             FacesContext contex= FacesContext.getCurrentInstance();
             contex.getExternalContext().redirect("evento.xhtml?identificacion="+identificacion);

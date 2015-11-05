@@ -63,11 +63,13 @@
                     <br/>
                     <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                     <br/>
-                    <p:commandButton value="Agregar" type="button" class="btn btn-success" onclick="#{eventoBean.activarDialogoAgregar()}" />
+                    <p:commandButton value="Agregar" class="btn btn-success" update=":eventoaid" oncomplete="PF('agregar').show();">
+                        <f:setPropertyActionListener value="#{eventoBean.identificacion}" target="#{eventoBean.identificacion}" />
+                    </p:commandButton>
                 </h:form>
 
                 <p:dialog header="Agregar" widgetVar="agregar" width="430" modal="true" resizable="false" >
-                    <h:form>
+                    <h:form id="eventoaid">
                         <p:panelGrid columns="2">
 
                             <p:outputLabel value="Lugar:" for="lugar"/>
@@ -95,6 +97,9 @@
                 <p:dialog header="Modificar" widgetVar="modificar" width="500" modal="true" resizable="false" >
                     <h:form id="eventomid">
                         <p:panelGrid columns="2">
+                            <p:outputLabel value="Identificador:" for="idm"/>
+                            <p:inputText id="idm" label="idm" required="true" value="#{eventoBean.eventoModificar.id}"/>
+                            
                             <p:outputLabel value="Lugar:" for="lugarm"/>
                             <p:inputText id="lugarm" label="lugarm" required="true" value="#{eventoBean.eventoModificar.lugar}"/>
 
@@ -112,7 +117,7 @@
 
                         </p:panelGrid>
                         <br/>
-                        <p:commandButton value="Modificar" actionListener="#{eventoBean.modificarEventoDialogo()}" oncomplete="handleSubmit(args,'PF('modificar')');"/>
+                        <p:commandButton value="Modificar" actionListener="#{eventoBean.modificarEvento()}" oncomplete="handleSubmit(args,'PF('modificar')');"/>
                         <p:commandButton value="Cancelar" onclick="PF('modificar').hide();"/>
                     </h:form>
                 </p:dialog>
