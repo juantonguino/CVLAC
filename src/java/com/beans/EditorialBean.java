@@ -10,6 +10,7 @@ import com.entities.Editorial;
 import com.utils.JPAUtil;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -71,6 +72,48 @@ public class EditorialBean {
     public void setEditoriales(List<Editorial> editoriales) {
         EditorialBean.editoriales = editoriales;
     }
+
+    public static int getIdentificacion() {
+        return identificacion;
+    }
+
+    public static void setIdentificacion(int identificacion) {
+        EditorialBean.identificacion = identificacion;
+    }
     
+    public void agregarEditorial(){
+        try{
+            controlador.create(editorialAgregar);
+            FacesContext contex= FacesContext.getCurrentInstance();
+            contex.getExternalContext().redirect("editorial.xhtml?identificacion="+identificacion);
+        }
+        catch(Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede agregar editorial"));
+        }
+    }
     
+    public void modoficarEditorial(){
+        try{
+            if(editorialModificar.getLibroList()==null){
+                editorialModificar.setLibroList(new ArrayList<>());
+            }
+            controlador.edit(editorialModificar);
+            FacesContext contex= FacesContext.getCurrentInstance();
+            contex.getExternalContext().redirect("editorial.xhtml?identificacion="+identificacion);
+        }
+        catch(Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede modificar Editorial"));
+        }
+    }
+    
+    public void eliminarEditorial(Editorial editorial){
+        try{
+            controlador.destroy(editorial.getId());
+            FacesContext contex= FacesContext.getCurrentInstance();
+            contex.getExternalContext().redirect("editorial.xhtml?identificacion="+identificacion);
+        }
+        catch(Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede eliminar Editorial"));
+        }
+    }
 }
