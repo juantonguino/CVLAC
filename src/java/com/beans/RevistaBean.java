@@ -10,6 +10,7 @@ import com.entities.Revista;
 import com.utils.JPAUtil;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -83,4 +84,42 @@ public class RevistaBean {
         RevistaBean.identificacion = identificacion;
     }
     
+    public void agregarRevista(){
+        try{
+            controlador.create(revistaAgregar);
+            FacesContext contex= FacesContext.getCurrentInstance();
+            contex.getExternalContext().redirect("revista.xhtml?identificacion="+identificacion);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "EXELENTE!", "Se ha agregado una ponencia"));
+        }
+        catch(Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede eliminar Vehiculo"));
+        }
+    }
+    
+    public void modificarRevista(){
+        try{
+            if(revistaModificar.getArticuloList()==null){
+                revistaModificar.setArticuloList(new ArrayList<>());
+            }
+            controlador.edit(revistaModificar);
+            FacesContext contex= FacesContext.getCurrentInstance();
+            contex.getExternalContext().redirect("revista.xhtml?identificacion="+identificacion);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "EXELENTE!", "Se ha agregado una ponencia"));
+        }
+        catch(Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede modificar Revista"));
+        }
+    }
+    
+    public void eliminarRevista(Revista revista){
+        try{
+            controlador.destroy(revista.getNombre());
+            FacesContext contex= FacesContext.getCurrentInstance();
+            contex.getExternalContext().redirect("revista.xhtml?identificacion="+identificacion);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "EXELENTE!", "Se ha eliminado un evento"));
+        }
+        catch(Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No se puede eliminar Revista"));
+        }
+    }
 }
