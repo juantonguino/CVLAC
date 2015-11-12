@@ -81,7 +81,7 @@ public class UsuarioBean {
             if(temp.getEsadministrador()==true){
                 try{
                     FacesContext contex= FacesContext.getCurrentInstance();
-                    contex.getExternalContext().redirect("/WebCVLAC/faces/gurpoInvestigacion/List.xhtml");
+                    contex.getExternalContext().redirect("/WebCVLAC");
                 }
                 catch(Exception e){
                     e.printStackTrace();
