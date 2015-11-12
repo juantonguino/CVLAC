@@ -82,10 +82,19 @@
                             <p:calendar id="fechafin" label="fechafin" required="true" value="#{eventoBean.eventoAgregar.fechaFin}" showOn="button"/>
 
                             <p:outputLabel value="Tipo:"/>
-                            <p:inputText label="tipo" required="true" value="#{eventoBean.eventoAgregar.tipo}"/>
+                            <p:selectOneMenu label="tipo" required="true" value="#{eventoBean.eventoAgregar.tipo}">
+                                <f:selectItem itemLabel="Congreso" itemValue="Congreso" />
+                                <f:selectItem itemLabel="Seminario" itemValue="Seminario" />
+                                <f:selectItem itemLabel="Foro" itemValue="Foro" />
+                                <f:selectItem itemLabel="Simposio" itemValue="Simposio" />
+                                <f:selectItem itemLabel="Otro" itemValue="Otro" />
+                            </p:selectOneMenu>
 
                             <p:outputLabel value="Caracter:" for="caracter"/>
-                            <p:inputText id="caracter" label="caracter" required="true" value="#{eventoBean.eventoAgregar.caracter}"/>
+                            <p:selectOneMenu id="caracter" label="caracter" required="true" value="#{eventoBean.eventoAgregar.caracter}">
+                                <f:selectItem itemLabel="Nacional" itemValue="Nacional" />
+                                <f:selectItem itemLabel="Internacional" itemValue="Internacional" />
+                            </p:selectOneMenu>
 
                         </p:panelGrid>
                         <br/>
@@ -110,10 +119,19 @@
                             <p:calendar id="fechafinm" label="fechafinm" required="true" value="#{eventoBean.eventoModificar.fechaFin}" showOn="button"/>
 
                             <p:outputLabel value="Tipo:"/>
-                            <p:inputText label="tipom" required="true" value="#{eventoBean.eventoModificar.tipo}"/>
-
+                            <p:selectOneMenu label="tipom" required="true" value="#{eventoBean.eventoModificar.tipo}">
+                                <f:selectItem itemLabel="Congreso" itemValue="Congreso" />
+                                <f:selectItem itemLabel="Seminario" itemValue="Seminario" />
+                                <f:selectItem itemLabel="Foro" itemValue="Foro" />
+                                <f:selectItem itemLabel="Simposio" itemValue="Simposio" />
+                                <f:selectItem itemLabel="Otro" itemValue="Otro" />
+                            </p:selectOneMenu>
+                                
                             <p:outputLabel value="Caracter:" for="caracterm"/>
-                            <p:inputText id="caracterm" label="caracterm" required="true" value="#{eventoBean.eventoModificar.caracter}"/>
+                            <p:selectOneMenu id="caracterm" label="caracterm" required="true" value="#{eventoBean.eventoModificar.caracter}">
+                                <f:selectItem itemLabel="Nacional" itemValue="Nacional" />
+                                <f:selectItem itemLabel="Internacional" itemValue="Internacional" />
+                            </p:selectOneMenu>
 
                         </p:panelGrid>
                         <br/>

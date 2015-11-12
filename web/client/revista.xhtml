@@ -24,7 +24,7 @@
                             <f:facet name="header">
                                 <h:outputLabel value="Indexada" />
                             </f:facet>
-                            <h:outputLabel value="#{objeto.indexada}" />
+                            <p:selectBooleanCheckbox value="#{objeto.indexada}" disabled="true"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -55,9 +55,15 @@
                             <h:outputLabel value="Nombre:"/>
                             <h:inputText value="#{revistaBean.revistaAgregar.nombre}"/>
                             <h:outputLabel value="Indexada:"/>
-                            <h:inputText value="#{revistaBean.revistaAgregar.indexada}"/>
+                            <p:selectBooleanCheckbox value="#{revistaBean.revistaAgregar.indexada}"/>
                             <h:outputLabel value="Categorizacio"/>
-                            <h:inputText value="#{revistaBean.revistaAgregar.categorizacion}"/>
+                            <h:selectOneMenu value="#{revistaBean.revistaAgregar.categorizacion}">
+                                <f:selectItem itemLabel="No Aplica" itemValue="" />
+                                <f:selectItem itemLabel="C" itemValue="C" />
+                                <f:selectItem itemLabel="B" itemValue="B" />
+                                <f:selectItem itemLabel="A" itemValue="A" />
+                                <f:selectItem itemLabel="A1" itemValue="A1" />
+                            </h:selectOneMenu>
                         </p:panelGrid> 
                         <br/>
                         <p:commandButton value="Agregar" oncomplete="handleSubmit(args,'PF('agregar')');" actionListener="#{revistaBean.agregarRevista()}"/>
@@ -70,9 +76,15 @@
                             <h:outputLabel value="Nombre:"/>
                             <h:inputText value="#{revistaBean.revistaModificar.nombre}"/>
                             <h:outputLabel value="Indexada:"/>
-                            <h:inputText value="#{revistaBean.revistaModificar.indexada}"/>
+                            <p:selectBooleanCheckbox value="#{revistaBean.revistaModificar.indexada}"/>
                             <h:outputLabel value="Categorizacio"/>
-                            <h:inputText value="#{revistaBean.revistaModificar.categorizacion}"/>
+                            <h:selectOneMenu value="#{revistaBean.revistaModificar.categorizacion}">
+                                <f:selectItem itemLabel="No Aplica" itemValue="" />
+                                <f:selectItem itemLabel="C" itemValue="C" />
+                                <f:selectItem itemLabel="B" itemValue="B" />
+                                <f:selectItem itemLabel="A" itemValue="A" />
+                                <f:selectItem itemLabel="A1" itemValue="A1" />
+                            </h:selectOneMenu>
                         </p:panelGrid>
                         <br/>
                         <p:commandButton value="Modificar" oncomplete="handleSubmit(args,'PF('modificar')');" actionListener="#{revistaBean.modificarRevista()}"/>
